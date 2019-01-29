@@ -8,12 +8,14 @@ set (SOURCES ${SOURCES} json.c json.h)
 
 add_library (jsonparser ${SOURCES})
 
+target_include_directories(jsonparser PUBLIC ./)
+
 set_target_properties (jsonparser PROPERTIES VERSION 0.1.0
                                               SOVERSION 0.1)
 
 target_link_libraries (jsonparser ${LIBS})
 
-install (TARGETS jsonparser DESTINATION lib)
-install (FILES json.h DESTINATION include)
+#install (TARGETS jsonparser DESTINATION lib)
+#install (FILES json.h DESTINATION include)
 
 
