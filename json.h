@@ -35,6 +35,12 @@
    #define json_char char
 #endif
 
+#if defined(_MSVC_LANG)
+#define _CPP_VER _MSVC_LANG
+#elif defined(__cplusplus)
+#define _CPP_VER __cplusplus
+#endif
+
 #ifndef json_int_t
    #ifndef _MSC_VER
       #include <inttypes.h>
@@ -123,7 +129,7 @@ typedef struct _json_value
 
          json_object_entry * values;
 
-         #if defined(__cplusplus) && __cplusplus >= 201103L
+         #if defined(_CPP_VER) && (_CPP_VER >= 201103L)
          decltype(values) begin () const
          {  return values;
          }
@@ -139,7 +145,7 @@ typedef struct _json_value
          unsigned int length;
          struct _json_value ** values;
 
-         #if defined(__cplusplus) && __cplusplus >= 201103L
+         #if defined(_CPP_VER) && (_CPP_VER >= 201103L)
          decltype(values) begin () const
          {  return values;
          }
